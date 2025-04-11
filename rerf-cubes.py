@@ -45,7 +45,7 @@ def generate_cube(cube_number: int, cube_size: float, tube_size: float):
     cube = cube.faces("<X").invoke(make_text(tube_size_text))
     cube = cube.faces(">Y").invoke(make_text(cube_number_text))
 
-    # Create a hole for the tube on the top face
+    # Create a hole for the tube 
     cube = cube.faces(">Z").workplane(centerOption="CenterOfMass").hole(tube_size)
 
     # Shift the cube so its bottom face is on the build plate (Z = 0)
@@ -143,7 +143,7 @@ def generate_support(
     #base = cq.Workplane("XY").box(base_size, base_size, base_height, centered=(True, True, False))
 
     # Create three support pillars on top of the base
-    support_pillar_len = support_len - base_height
+    support_pillar_len = support_len - base_height # + 0.5 # a fudge factor to bury the tip in object makes spider webs worse
     support_radius = support_base_diameter / 2
     support_loc_offset = base_size / 2 - support_radius
     support1 = support_pillar( support_pillar_len, support_base_diameter, support_tip_diameter).clean()
