@@ -143,18 +143,25 @@ def generate_support(
     #base = cq.Workplane("XY").box(base_size, base_size, base_height, centered=(True, True, False))
 
     # Create three support pillars on top of the base
-    support_pillar_len = support_len - base_height # + 0.5 # a fudge factor to bury the tip in object makes spider webs worse
+    support_pillar_len = support_len #- base_height # + 0.5 # a fudge factor to bury the tip in object makes spider webs worse
     support_radius = support_base_diameter / 2
     support_loc_offset = base_size / 2 - support_radius
-    support1 = support_pillar( support_pillar_len, support_base_diameter, support_tip_diameter).clean()
-    support1 = support1.translate((-support_loc_offset, -support_loc_offset, base_height))
-    support2 = support_pillar( support_pillar_len, support_base_diameter, support_tip_diameter).clean()
-    support2 = support2.translate((support_loc_offset, -support_loc_offset, base_height))
-    support3 = support_pillar( support_pillar_len, support_base_diameter, support_tip_diameter).clean()
-    support3 = support3.translate((0, +support_loc_offset, base_height))
+    #support1 = support_pillar( support_pillar_len, support_base_diameter, support_tip_diameter).clean()
+    #support1 = support1.translate((-support_loc_offset, -support_loc_offset, base_height))
+    #support2 = support_pillar( support_pillar_len, support_base_diameter, support_tip_diameter).clean()
+    #support2 = support2.translate((support_loc_offset, -support_loc_offset, base_height))
+    support1 = support_pillar( support_pillar_len, support_base_diameter, support_tip_diameter)
+    support1 = support1.translate((support_loc_offset, 0, base_height))
+    #support2 = support_pillar( support_pillar_len, support_base_diameter, support_tip_diameter)
+    #support2 = support2.translate((-support_loc_offset, 0, base_height))
+    #support3 = support_pillar( support_pillar_len, support_base_diameter, support_tip_diameter)
+    #support3 = support3.translate((0, support_loc_offset, base_height))
+    #support4 = support_pillar( support_pillar_len, support_base_diameter, support_tip_diameter)
+    #support4 = support4.translate((0, -support_loc_offset, base_height))
     
     # Union the base and support
-    build_object = base.add(support1).add(support2).add(support3).clean()
+    #build_object = base.add(support1) #.add(support2).add(support3).add(support4)
+    build_object = support1
 
     return build_object
 
@@ -192,9 +199,10 @@ def generate_build_object(cube_number: int, cube_size: float, tube_size: float):
         support_tip_diameter = 0.2
 
         support = generate_support(layer_height, cube_size, base_layers, support_len, support_diameter, support_tip_diameter)
-        cube = generate_cube(cube_number, cube_size, tube_size)
-        cube = cube.translate((0, 0, support_len))
-        build_object = cube.add(support)
+        #cube = generate_cube(cube_number, cube_size, tube_size)
+        #cube = cube.translate((0, 0, support_len))
+        #build_object = cube.add(support)
+        build_object = support
 
         ## Additional variables for mulitple cubes
         #pixels_per_mm = 1 / 0.017
