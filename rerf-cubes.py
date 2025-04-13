@@ -280,6 +280,35 @@ def doit(file_name: str, file_format: str, cube_count: int, cube_size: float, tu
     export_model(build_object, file_name, file_format)
     return build_object
 
+# if len(sys.argv) != 6:
+#     print("Usage: rerf-cubes <filename> <format> <cube_count> <cube_size> <tube_size>")
+#     print("       <filename>:   Name of the output file (without extension)")
+#     print("       <format>:     Format to export the model ('stl' or 'step')")
+#     print("       <cube_count>: Number of cubes to create (1 or 4)")
+#     print("                     cube number is engraved on the +Y face")
+#     print("       <cube_size>:  Size of the cube engraved on the +X face")
+#     print("       <tube_size>:  Tube size and engraved on the -X face")
+#     print("Example: ./rerf-cube my_cube stl 1 2.397 0.595")
+# else:
+#     file_name = sys.argv[1]
+#     file_format = sys.argv[2]
+#     cube_count = int(sys.argv[3])
+#     cube_size = float(sys.argv[4])
+#     tube_size = float(sys.argv[5])
+#     layer_height = 0.050
+#     support_len = 5.0
+#     base_layers = 5
+# 
+# build_object = doit(file_name, file_format, cube_count, cube_size, tube_size)
+# 
+# if __name__ == "__main__":
+#     # so stuff
+#     logging.info(f"__main__ logging.info: __name__: {__name__}")
+# elif __name__ == "__cq_main__":
+#     logging.info(f"__cq_main__ logging.info: __name__: {__name__}")
+#     show_object(build_object, name=file_name)
+# else:
+#     logging.info(f"Unreconized __name__: {__name__}")
 
 if __name__ == "__main__":
     logging.info(f"__main__ logging.info: __name__: {__name__}")
